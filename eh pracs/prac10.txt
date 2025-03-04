@@ -1,0 +1,10 @@
+# session impersonation
+ 1. open fire fox download 2 addons
+    1.tamper data for ff quantum
+    2. cookie-editor
+2. open new tab (https://www.techpanda.org/) > login username = admin@google.com , pass = Password2010
+3. go to cookie editor add on and in PHPSESSID copy paste the id displayed in the input box.
+4. new tab > firefox settings > privacy and security > cookies & site data clear data.
+5. now go to tamper add on & start it by clicking yes
+6. now open new tab (https://www.techpanda.org/index.php)
+7. 

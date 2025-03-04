@@ -1,0 +1,5 @@
+run the  following commands:
+1. ipconfig
+2. netstat
+3. tracert
+4. ping google.com

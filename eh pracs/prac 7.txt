@@ -1,0 +1,9 @@
+use wireshark to capture network traffic and analyze.
+Steps:
+1. open wire shark
+2. select ethernet and start
+3. go to any browservsearch any demo site like (http://testphp.vulnweb.com/login.php) 
+4. enter the given username and password in given textbox.
+5. search http in wireshark
+6. find userinfo.php url in given.
+7. username and password is shown

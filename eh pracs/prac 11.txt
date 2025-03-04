@@ -1,0 +1,23 @@
+#SQL injection
+1. open xampp chech if working
+2. copy DVWA to phpMyAdmin folder
+3. rename config.inc to .php
+4. open config.php with notepad
+5.
+$_DVWA = array();
+$_DVWA[ 'db_server' ]   = getenv('DB_SERVER') ?: '127.0.0.1';
+$_DVWA[ 'db_database' ] = getenv('DB_DATABASE') ?: 'dvwa';
+$_DVWA[ 'db_user' ]     = getenv('DB_USER') ?: 'root';
+$_DVWA[ 'db_password' ] = getenv('DB_PASSWORD') ?: '';
+$_DVWA[ 'db_port']      = getenv('DB_PORT') ?: '3306';
+
+6. now run setup.php (https://localhost/phpmyadmin/DVWA/setup.php)
+7. create/ reset database.
+8. login admin , password
+9.DVWA tab set "LOW security"
+10. sql injection tab user id = 1 
+a 'or' '='
+1*
+1=1
+2#
+

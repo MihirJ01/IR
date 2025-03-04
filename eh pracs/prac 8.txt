@@ -1,0 +1,2 @@
+dos attack using cmd.
+command: ping 172.16.0.124 -t135

@@ -1,0 +1,6 @@
+use nmap scanner to port scanning.
+ack 1. nmap -T4 -A -v scanme.nmap.org
+syn 2. nmap -p 22,113,139 scanme.nmap.org
+fin 3. nmap -sF -T4 scanme.nmap.org
+null 4. nmap -sN -p 22 scanme.nmap.org
+xmas 5. nmap -sX -T4 scanme.nmap.org

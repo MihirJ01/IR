@@ -1,0 +1,34 @@
+# practical of time series forecasting
+# Load the inbuilt dataset AirPassengers
+data("AirPassengers")
+
+# Check the class of the dataset (it belongs to time series format)
+class(AirPassengers)
+
+# Get the start time of the time series
+start(AirPassengers)
+
+# Get the end time of the time series
+end(AirPassengers)
+
+# Get the frequency of the time series (12 means it's a monthly time series)
+frequency(AirPassengers)
+
+# Summary statistics of the dataset
+summary(AirPassengers)
+
+# 1. Plot the Time Series Model
+plot(AirPassengers)
+
+# 2. Best Fit Line for Regression
+abline(lm(AirPassengers ~ time(AirPassengers)))
+# 3. Print Seasonal Cycle Across Years
+cycle(AirPassengers)
+
+# 4. Aggregate the Cycle and Display Trend Per Year
+plot(aggregate(AirPassengers,FUN = mean))
+
+# -----------------------------------
+# 5. Generate a Box Plot for Seasonality Analysis
+# -----------------------------------
+boxplot(AirPassengers~cycle(AirPassengers))

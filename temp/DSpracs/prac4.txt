@@ -1,0 +1,46 @@
+#practical of k means clustering.
+# Load dataset
+data("iris")
+
+# Display column names
+names(iris)
+
+# Select all columns except 'Species'
+new_data <- subset(iris, select = -Species)
+new_data
+
+# Apply k-means clustering with 3 clusters
+cl <- kmeans(new_data, 3)
+cl
+
+# Copy new_data to another variable
+data <- new_data
+
+# Compute within-cluster sum of squares for different k values
+wss <- sapply(1:15, function(k) {
+  kmeans(data, k)$tot.withinss
+})
+wss
+
+# Plot the Elbow Method graph
+plot(1:15, wss,
+     type = "b", pch = 19, frame = FALSE, 
+     xlab = "Number of clusters K",
+     ylab = "Total within-clusters sum of squares")
+
+# Load required libraries
+# install.packages("cluster")
+library(cluster)
+
+# install.packages("ggplot2")
+library(ggplot2)
+
+# Visualize clusters
+clusplot(new_data, cl$cluster, color = TRUE, shade = TRUE, 
+         labels = 2, lines = 0)
+
+# Display cluster assignments
+cl$cluster
+
+# Display cluster centers
+cl$centers

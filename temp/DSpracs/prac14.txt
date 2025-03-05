@@ -1,0 +1,24 @@
+# practical to draw histogram , line plot
+#Line Plot
+#create some data in x
+x <- c(1:5)
+y <- x
+#plotting symbol and color
+par(pch = 22 ,col = "darkblue")
+#all plots on one page
+par(mfrow = c(2,4))
+opts = c("p","l","o","b","c","s","S","h")
+for(i in 1:length(opts)){
+  heading = paste("type = ",opts[i])
+  plot(x,y,type="n",main=heading)
+  lines(x,y,type=opts[i])
+}
+
+# histogram
+#Histogram in R using mtcars dataset
+hist(mtcars$mpg)
+#mtcars is the name of the dataset and mpg is attribute
+#$ is used to mention that mpg is in mtcars,hist is the command
+#for histogram no of bars in the histogram can be controlled
+# and bars can be colored
+hist(mtcars$mpg,breaks=20,col="green")

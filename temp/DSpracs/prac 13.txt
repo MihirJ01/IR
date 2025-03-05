@@ -1,0 +1,35 @@
+# practical to implement decision tree.
+# Load necessary libraries
+library(tree)
+library(caret)
+library(dplyr)
+
+# Load the dataset
+df <- read.csv("C:\\Users\\sejalpatil1728\\Downloads\\student_improved.csv")
+
+# Convert categorical columns to factors
+df$Gender <- as.factor(df$Gender)
+df$ProgrammingLanguage <- as.factor(df$ProgrammingLanguage)
+df$Grade <- as.factor(df$Grade)
+
+# Split the data into training and testing sets (80% train, 20% test)
+set.seed(42)  # For reproducibility
+trainIndex <- createDataPartition(df$Grade, p = 0.8, list = FALSE)
+trainData <- df[trainIndex, ]
+testData <- df[-trainIndex, ]
+
+# Create the decision tree model using the tree package
+model <- tree(Grade ~ Age + Gender + ProgrammingLanguage, data = trainData)
+
+# Print the model summary
+summary(model)
+
+# Predict on the test data
+predictions <- predict(model, testData, type = "class")
+
+# Evaluate the model's accuracy
+confusionMatrix(predictions, testData$Grade)
+
+# Visualize the decision tree
+plot(model)
+text(model, pretty = 0)

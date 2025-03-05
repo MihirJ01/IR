@@ -1,0 +1,36 @@
+#practical to implement hypothesis testing.
+# Defining sample vector
+x <- rnorm(100)
+
+# One Sample T-Test
+t.test(x, mu = 5)
+
+# 2 tow sample tt testing.
+x <- rnorm(100)
+y <- rnorm(100)
+
+# Two Sample T-Test
+t.test(x, y)
+
+#3 directional hypothesis
+x <- rnorm(100)
+
+# Directional hypothesis testing
+t.test(x, mu = 2, alternative = 'greater')
+
+# 4 one sample μ test
+x <- rnorm(100)
+
+# One sample test
+wilcox.test(x, exact = FALSE)
+
+# 5 two sample μ test
+x <- rnorm(100)
+y <- rnorm(100)
+
+# Two sample test 
+wilcox.test(x, y)
+
+# 6 corelation test
+# Using mtcars dataset in R
+cor.test(mtcars$mpg, mtcars$hp)

@@ -1,0 +1,7 @@
+# practical of two way anova
+"two way anova"
+data2<-read.csv(file.choose(),sep=",",header = T)
+names(data2)
+summary(data2)
+anv1<-aov(formula = satindex~ dept+exp+dept*exp,data = data2)
+summary(anv1)

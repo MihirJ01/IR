@@ -1,0 +1,33 @@
+#practical to implement logistics regression
+# Load the 'mtcars' dataset and display it for exploration
+View(mtcars)
+# The variable 'vs' in the 'mtcars' dataset indicates the engine type:
+# vs = 0 (V-shaped engine), vs = 1 (Straight engine)
+
+#===============####=================
+# Building the first logistic regression model based on 'mpg'
+model1 <- glm(formula = vs ~ mpg, data = mtcars, family = "binomial")  
+summary(model1)
+
+# Predicting the probability of a straight engine for a car with 20 mpg
+predict(model1, data.frame(mpg = 20), type = "response")
+# Predicting probabilities for a range of mpg values from 20 to 30
+predict(model1, data.frame(mpg = c(20:30)), type = "response")
+
+# Building the second logistic regression model based on 'hp'
+model2 <- glm(formula = vs ~ hp, data = mtcars, family = "binomial")  
+summary(model2)
+
+# Predicting the probability of a straight engine for a car with 150 horsepower
+predict(model2, data.frame(hp = 150), type = "response")
+# Predicting probabilities for multiple horsepower values: 150, 100, 50
+predict(model2, data.frame(hp = c(150, 100, 50)), type = "response")
+
+# Building the third logistic regression model with two predictors: 'hp' and 'mpg'
+model3 <- glm(formula = vs ~ hp + mpg, data = mtcars, family = "binomial") 
+summary(model3)
+
+#Display AIC of models
+AIC(model1)
+AIC(model2)
+AIC(model3)

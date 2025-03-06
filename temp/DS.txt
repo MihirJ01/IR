@@ -1,4 +1,54 @@
 DS
+#1
+install.packages("sofa")
+library("sofa")
+x <- Cushion$new()
+x$ping()
+x <- Cushion$new(user="",pwd="")
+db_create(x,dbname="ty")
+#create json doc
+doc1<-'{"rollno":"01","name":"ABC","GRADE":"A"}'
+doc_create(x,doc1,dbname = "ty",docid = "a_1")
+doc2<-'{"rollno":"02","name":"PQR","GRADE":"A"}'
+doc_create(x,doc2,dbname = "ty",docid = "a_2")
+doc3<-'{"rollno":"03","name":"xyz","GRADE":"B","REMARK":"PASS"}'
+doc_create(x,doc3,dbname = "ty",docid = "a_3")
+
+#CHANGES FEED
+db_changes(x,"ty")
+
+#search for id > null so all docs will display
+db_query(x,dbname = "ty",
+selector = list('_id'=list('$gt'=NULL)))$docs
+
+#search for students with grade is A
+db_query(x,dbname = "ty",selector = list(GRADE="A"))$docs
+
+#search for students with remark =pass
+db_query(x,dbname = "ty",selector = list(REMARK="PASS"))$docs
+
+#return only certain fields where rollno>2
+db_query(x,dbname = "ty",selector = list(rollno=list('$gt'='02')),fields=c("name","GRADE"))$docs
+
+#convert the result of a query into a data frame using jsonlite
+library("jsonlite")
+res<-db_query(x,dbname = "ty",selector = list('_id'=list('$gt'=NULL)),fields=c("name","rollno","GRADE","REMARK"),as="json")
+
+#display json doc
+fromJSON(res)$docs
+
+#doc_delete(cushion,dbname,docid)
+doc_delete(x,dbname = "ty",docid = "a_2")
+doc_get(x,dbname = "ty",docid = "a_2")
+
+doc2<-'{"name":"Sdrink","beer":"TEST","note":"yummy","note2":"yay"}'
+doc_update(x,dbname = "ty",doc=doc2,docid="a_3",rev = "3-b1fb56db955b142c6efd3b3c52fe9e1b")
+
+doc3<-'{"rollno":"01",
+"name":"UZMA",
+"GRADE":"A"}'
+
+doc_update(x,dbname = "ty",doc=doc3,docid = "a_1",rev = "1-be7c98bddf8ea7c46f4f401ff387593d"
 
 #3.practical of principle components analysis.
 

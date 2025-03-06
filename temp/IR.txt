@@ -158,23 +158,73 @@ print(silhouette_avg)
 #6.**Write program for pre-processing of Text document: stop word removal
 
 import nltk
-##nltk.download('stopwords')
-##nltk.download('punkt')
-##nltk.download('punkt_tab')
+# Uncomment these lines if running for the first time
+# nltk.download('stopwords')
+# nltk.download('punkt')
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-example_sentence = 'Quantum mechanics describes the behavior of particles at the atomic level.'
+
+# Example sentence
+example_sentence = "Quantum mechanics describes the behavior of particles at the atomic level."
+
+# Load English stop words
 stop_words = set(stopwords.words('english'))
+
 # Tokenize the sentence
 word_tokens = word_tokenize(example_sentence)
+
 # Filter out stop words
-filtered_sentence = [w for w in word_tokens if w.lower() not in stop_words]
-stopwords_found = [w for w in word_tokens if w.lower() in stop_words]
+filtered_sentence = [word for word in word_tokens if word.lower() not in stop_words]
+stopwords_found = [word for word in word_tokens if word.lower() in stop_words]
+
 # Print results
-print(f'Sentence is: {word_tokens}')
-print(f'Filtered Sentence is: {filtered_sentence}')
-print('Stop words in example sentence were : ',stopwords_found)
-print('Count of stop words in the example sentence: ', len(stopwords_found))
+print(f"Original Sentence: {word_tokens}")
+print(f"Filtered Sentence (without stop words): {filtered_sentence}")
+print(f"Stop words removed: {stopwords_found}")
+print(f"Count of stop words removed: {len(stopwords_found)}")
+
+#7 summarization
+from transformers import pipeline
+
+# Load the summarization pipeline
+summarizer = pipeline("summarization")
+
+# Example text
+text = """Quantum mechanics describes the behavior of particles at the atomic and subatomic levels. 
+It provides a mathematical framework for understanding how particles interact with each other 
+and with energy. Unlike classical physics, quantum mechanics introduces concepts such as 
+wave-particle duality, superposition, and entanglement, which challenge our classical intuition. 
+Despite its counterintuitive nature, quantum mechanics has been extensively verified through experiments 
+and has led to groundbreaking technologies such as semiconductors and quantum computing."""
+
+# Summarize the text
+summary = summarizer(text, max_length=50, min_length=20, do_sample=False)
+
+# Print the summary
+print("Summary:")
+print(summary[0]['summary_text'])
+
+#8QA system
+from transformers import pipeline
+
+# Load the Question-Answering pipeline
+qa_pipeline = pipeline("question-answering")
+
+# Context paragraph
+context = """Quantum mechanics describes the behavior of particles at the atomic and subatomic levels. 
+It introduces concepts such as wave-particle duality, superposition, and entanglement, which challenge 
+classical physics. Despite being counterintuitive, it has been extensively verified through experiments."""
+
+# User's question
+question = "What does quantum mechanics describe?"
+
+# Get the answer
+answer = qa_pipeline(question=question, context=context)
+
+# Print the answer
+print("Question:", question)
+print("Answer:", answer['answer'])
 
 
 

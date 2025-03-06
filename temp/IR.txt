@@ -341,6 +341,17 @@ else:
 
 #12.Write a program to parse XML text, generate Web graph and compute topic specific page rank
 
+xml-code
+<collection shelf = "New Arrivals">
+<movie title : "OnePiece">
+<type>Anime,Action</type>
+<format>Blu-ray</format>
+<year>2019</year>
+<rating>pg-13</rating>
+<stars>9</stars>
+<description>The piraate festival</description>
+</collection>
+py- code
 import networkx as nx
 import matplotlib.pyplot as plt
 
